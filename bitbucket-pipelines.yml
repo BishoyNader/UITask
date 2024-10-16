@@ -1,0 +1,17 @@
+#  The workflow allows running tests and code linting on the default branch.
+image: mcr.microsoft.com/playwright:v1.23.0-focal
+
+pipelines:
+  default:
+    - parallel:
+        - step:
+            name: Build and Test
+            caches:
+              - node
+            script:
+              - npm ci
+              - npx playwright install --with-deps 
+              - set +e
+              - npm run test
+            artifacts: # defining the artifacts to be passed to each future step.
+              - playwright-report/**

@@ -16,7 +16,7 @@ This project focuses on automating a web application using Playwright and TypeSc
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/ui-automation-project.git
+   git clone https://github.com/BishoyNader/UITask.git
 
 2. **Navigate to the project directory**
    ```bash

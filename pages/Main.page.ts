@@ -1,38 +1,93 @@
-import { Page, Locator } from '@playwright/test';
+// import { Page, Locator } from '@playwright/test';
+
+// export class MainPage {
+//     readonly page: Page;
+//     readonly addButton: Locator;
+//     readonly searchField: Locator;
+//     readonly searchedItemTitle: Locator;
+//     readonly firstItemTitle: Locator;
+//     readonly firstItemEditButton: Locator;
+//     readonly firstItemDeleteButton: Locator;
+//     readonly noProductFound: Locator;
+
+//     constructor (page: Page) {
+//         this.page = page;
+//         this.addButton = page.locator('xpath=(//a[@href="/add"])');
+//         this.searchField = page.locator('xpath=(//input[@placeholder="Search for products ..."])');
+//         this.searchedItemTitle = page.locator('[class="sc-kpDqfm hfQJgD mt-4 cursor-pointer"]');
+//         this.firstItemTitle = page.locator('xpath=(//div[@class="sc-kpDqfm hfQJgD mt-4 cursor-pointer"])[1]');
+//         this.firstItemEditButton = page.locator('xpath=(//button[@class="sc-cwHptR kKPVKI flex justify-center items-center h-9 w-9 transition ease-in-out delay-150 duration-300"])[1]');
+//         this.firstItemDeleteButton = page.locator('xpath=(//button[@class="sc-cwHptR sc-jEACwC kKPVKI jdGkNS flex justify-center items-center h-9 w-9 transition ease-in-out delay-150 duration-300"])[1]');
+//         this.noProductFound = page.locator('[class="text-center text-sm"]');
+//     }
+
+//     async visit() {
+//         await this.page.goto('https://e-commerce-kib.netlify.app/');
+//     }
+//     async searchedItemTitleText() {
+//         return this.searchedItemTitle.textContent();
+//     }
+//     async getFirstItemTitle() {
+//         return this.firstItemTitle.innerText();
+//     }
+// }
+// export const searchAndVerifyItem = async (page: Page, searchItem: string, listItemSelector: string) => {
+//     // Perform the search
+//     await page.fill('xpath=(//input[@placeholder="Search for products ..."])', searchItem);
+    
+//     // Wait for search results to load
+//     await page.waitForSelector(listItemSelector);
+  
+//     // Get all list items
+//     const items = await page.locator(listItemSelector);
+//     const itemCount = await items.count();
+  
+//     // Verify that the searched item name is included in the list
+//     let found = false;
+//     for (let i = 0; i < itemCount; i++) {
+//       const itemText = await items.nth(i).textContent();
+//       if (itemText && itemText.includes(searchItem)) {
+//         found = true;
+//         break;
+//       }
+//     }
+  
+//     return found;
+//   };
+
+import { Page } from '@playwright/test';
 
 export class MainPage {
-    readonly page: Page;
-    readonly callDocButton: Locator;
-    readonly callADoctorButton: Locator;
-    readonly discoverMedicalLink: Locator;
-    readonly articlesLink: Locator;
+  constructor(private page: Page) {}
 
-    constructor (page: Page) {
-        this.page = page;
-        // this.callDocButton = page.locator('#id-1-13');// not working for JO
-        this.callADoctorButton = page.locator('#id-1-13');
-        this.callDocButton = page.locator(`[class="call-a-doctor-banner id-1-1 js-egypt js-other-countries"]`);
-        this.discoverMedicalLink = page.locator('[href="#"][data-even-name="Menu Opened"]');
-        this.articlesLink = page.locator('text=المقالات الطبية >> nth=1');
-    }
+  async visit() {
+    await this.page.goto('https://e-commerce-kib.netlify.app/');
+  }
 
-    async visit() {
-        await this.page.goto('https://automation.altibb.com/');
-    }
+  get addButton() {
+    return this.page.locator('xpath=(//a[@href="/add"])');
+  }
 
-    async visitJordan() {
-        await this.page.goto('https://automation.altibb.com/helper/set-country?country_code=JO');
-    }
+  get searchField() {
+    return this.page.locator('xpath=(//input[@placeholder="Search for products ..."])');
+  }
 
-    async visitEgypt() {
-        await this.page.goto('https://automation.altibb.com/helper/set-country?country_code=EG');
-    }
+  get searchedItemTitle() {
+    return this.page.locator('[class="sc-kpDqfm hfQJgD mt-4 cursor-pointer"]');
+  }
 
-    async visitSA() {
-        await this.page.goto('https://automation.altibb.com/helper/set-country?country_code=SA');
-    }
-    async navigateToArticlesPage(){
-        await this.discoverMedicalLink.click();
-        await this.articlesLink.click();
-    }
+  get firstItemEditButton() {
+    return this.page.locator('xpath=(//button[@class="sc-cwHptR kKPVKI flex justify-center items-center h-9 w-9 transition ease-in-out delay-150 duration-300"])[1]');
+  }
+
+  get firstItemDeleteButton() {
+    return this.page.locator('xpath=(//button[@class="sc-cwHptR sc-jEACwC kKPVKI jdGkNS flex justify-center items-center h-9 w-9 transition ease-in-out delay-150 duration-300"])[1]');
+  }
+
+  async getFirstItemTitle() {
+    return await this.page.locator('xpath=(//div[@class="sc-kpDqfm hfQJgD mt-4 cursor-pointer"])[1]').textContent();
+  }
+  get noProductFound() {
+    return this.page.locator('[class="text-center text-sm"]');
+  }
 }

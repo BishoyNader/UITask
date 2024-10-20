@@ -1,10 +1,10 @@
-<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="7.405312">
-<testsuite name="addItem.spec.ts" timestamp="2024-10-17T13:40:49.236Z" hostname="chromium" tests="3" failures="0" skipped="0" time="18.398" errors="0">
-<testcase name="Add new item test case › add new item and make sure it is added normally" classname="addItem.spec.ts" time="5.51">
+<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="8.379476">
+<testsuite name="itemAllTestCases.spec.ts" timestamp="2024-10-20T12:23:50.837Z" hostname="chromium" tests="3" failures="0" skipped="0" time="20.579" errors="0">
+<testcase name="Add new item test case › add new item and make sure it is added normally" classname="itemAllTestCases.spec.ts" time="6.358">
 </testcase>
-<testcase name="Add new item test case › Edit a product" classname="addItem.spec.ts" time="6.493">
+<testcase name="Add new item test case › Edit a product" classname="itemAllTestCases.spec.ts" time="6.459">
 </testcase>
-<testcase name="Add new item test case › Delete a product" classname="addItem.spec.ts" time="6.395">
+<testcase name="Add new item test case › Delete a product" classname="itemAllTestCases.spec.ts" time="7.762">
 </testcase>
 </testsuite>
 </testsuites>

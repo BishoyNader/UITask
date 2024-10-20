@@ -1,5 +1,4 @@
 import { chromium, Browser, Page } from 'playwright';
-import { expect, test } from '@playwright/test';
 import { clickButtonAndVerifyCounter } from '../pages/Counter';
 
 let browser: Browser;
@@ -28,4 +27,33 @@ test('should interact with an element inside canvas', async () => {
   const counterIncreased = await clickButtonAndVerifyCounter(page, buttonX, buttonY, counterX, counterY);
   expect(counterIncreased).toBe(true);
   await browser.close();
+});
+
+import { test, expect } from '@playwright/test';
+
+test.describe('Flutter Counter App', () => {
+  test('should increase counter on button click', async ({ page }) => {
+    // Navigate to the URL
+    await page.goto('https://flutter-angular.web.app/');
+
+    // Get the initial value of the counter
+    const counterLocator = page.locator('text=Counter');
+    const initialValue = await counterLocator.textContent();
+    console.log(`Initial Counter Value: ${initialValue}`);
+    // Ensure the initial value is not null
+    if (initialValue === null) throw new Error('Initial counter value is null');
+
+    // Locate the button by CSS selector
+    const plusButton = page.locator('button');
+    await plusButton.first().click(); // Assuming it’s the first button
+
+    // Verify the counter has increased by 1
+    const updatedCounterLocator = page.locator('text=Counter');
+    const updatedValue = await updatedCounterLocator.textContent();
+    console.log(`Updated Counter Value: ${updatedValue}`);
+
+    // Ensure the updated value is not null
+    if (updatedValue === null) throw new Error('Updated counter value is null');
+    expect(Number(updatedValue.replace('Counter: ', ''))).toBe(Number(initialValue.replace('Counter: ', '')) + 1);
+  });
 });

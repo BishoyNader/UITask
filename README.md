@@ -36,25 +36,37 @@ This project focuses on automating a web application using Playwright and TypeSc
     .
     ├── pages
     │   ├── AddItemPage.ts
+    │   ├── BasePage.ts
+    │   ├── Counter.ts
     │   ├── MainPage.ts
     ├── tests
-    │   ├── addItem.spec.ts
+    │   ├── counter.spec.ts
+    │   ├── itemAllTestCases.spec.ts
     ├── playwright.config.ts
     └── README.md
     pages/AddItemPage.ts: Contains helper functions for interacting with the add item elements.
 
+    pages/Base.page.ts: Contains helper functions for the script.
+
+    pages/Counter.ts: Contains helper functions for interacting with the counter elements.
+
     pages/MainPage.ts: Contains helper functions for interacting with the main page elements.
 
-    tests/addItem.spec.ts: Contains test cases to interact with adding, editing, and deleting items.
+    tests/counter.spec.ts: Contains test cases to interact with the counter.
+
+    tests/itemAllTestCases.spec.ts: Contains test cases to interact with adding, editing, and deleting items.
 
     playwright.config.ts: Playwright configuration file.
 
     README.md: Project documentation.
 6. **Test Cases**
-    Add, Edit, Delete Item
-    addItem.spec.ts:
+    Add, Edit, Delete Item positive and negative
+    itemAllTestCases.spec.ts:
 
-    Interacts with elements to add, edit, and delete items, verifying the expected outcomes.
+    Click the counter and check the increment
+    counter.spec.ts:
+
+    Interacts with elements to add, edit, and delete items, with positive and negative test cases verifying the expected outcomes.
 7. **Helpers**
     Helper functions are defined in AddItemPage.ts and MainPage.ts:
 

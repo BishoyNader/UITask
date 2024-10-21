@@ -18,4 +18,8 @@ export class AddItemPage {
   get itemCreateButton() {
     return this.page.locator('[type="submit"]');
   }
+
+  get itemErrorMessage() {
+    return this.page.locator('(//div[@class="sc-fPXMVe hbxGwz text-xs font-medium"])[1]');
+  }
 }
